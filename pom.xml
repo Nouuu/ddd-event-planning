@@ -2,12 +2,12 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>org.esgi</groupId>
-  <artifactId>ddd_event_planning</artifactId>
+  <groupId>org.esgi.ddd_event_planning</groupId>
+  <artifactId>conference</artifactId>
   <version>0.0.1</version>
   <packaging>jar</packaging>
 
-  <name>ddd-event-planning</name>
+  <name>conference</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -35,7 +35,7 @@
         <configuration>
           <archive>
             <manifest>
-              <mainClass>org.esgi.ddd_event_planning.App</mainClass>
+              <mainClass>org.esgi.ddd_event_planning.conference.App</mainClass>
             </manifest>
           </archive>
         </configuration>
@@ -48,7 +48,7 @@
           <archive>
             <manifest>
               <!-- Spécifier le point d'entrée -->
-              <mainClass>org.esgi.ddd_event_planning.App</mainClass>
+              <mainClass>org.esgi.ddd_event_planning.conference.App</mainClass>
             </manifest>
           </archive>
           <finalName>${project.artifactId}-${project.version}-standalone</finalName>

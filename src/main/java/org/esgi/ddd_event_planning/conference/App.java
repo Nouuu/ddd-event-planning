@@ -1,4 +1,4 @@
-package org.esgi.ddd_event_planning;
+package org.esgi.ddd_event_planning.conference;
 
 /**
  * Hello world!
