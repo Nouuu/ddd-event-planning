@@ -1,10 +1,11 @@
 package org.esgi.ddd_event_planning.conference.domain;
 
 import org.esgi.ddd_event_planning.conference.domain.model.Montant;
+import org.esgi.ddd_event_planning.conference.domain.model.Pourcentage;
 
 public final class BilleterieCalculateur {
-    public Montant calculerTarifBillet(int nombreDeParticipantCible, Montant coutEvenement, double rentabiliteAttendue) {
-        return coutEvenement.multiply(1 + rentabiliteAttendue).divide(nombreDeParticipantCible);
+    public Montant calculerTarifBillet(int nombreDeParticipantCible, Montant coutEvenement, Pourcentage rentabiliteAttendue) {
+        return coutEvenement.multiply(1 + rentabiliteAttendue.valeur()).divide(nombreDeParticipantCible);
     }
 
     public int calculerNombreMinimumParticipants(Montant coutEvenement, Montant montantBillet) {
