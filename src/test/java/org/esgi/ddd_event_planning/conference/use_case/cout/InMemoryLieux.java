@@ -10,12 +10,12 @@ public class InMemoryLieux implements Lieux {
     private final Map<String, Lieu> lieux = new HashMap<>();
 
     @Override
-    public void add(String eventId, Lieu lieu) {
+    public void ajouter(String eventId, Lieu lieu) {
         lieux.put(eventId, lieu);
     }
 
     @Override
-    public Lieu get(String eventId) {
+    public Lieu recuperer(String eventId) {
         return lieux.get(eventId);
     }
 }

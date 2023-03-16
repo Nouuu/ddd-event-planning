@@ -13,7 +13,7 @@ public class InMemoryStaffs implements Staffs {
 
 
     @Override
-    public void add(String eventId, Staff staff) {
+    public void ajouter(String eventId, Staff staff) {
         if (!staffs.containsKey(eventId)) {
             staffs.put(eventId, new ArrayList<>());
         }
@@ -21,7 +21,7 @@ public class InMemoryStaffs implements Staffs {
     }
 
     @Override
-    public List<Staff> get(String eventId) {
+    public List<Staff> recuperer(String eventId) {
         return staffs.computeIfAbsent(eventId, k -> new ArrayList<>());
     }
 }

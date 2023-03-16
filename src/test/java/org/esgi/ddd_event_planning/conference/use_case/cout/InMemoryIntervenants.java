@@ -12,7 +12,7 @@ public class InMemoryIntervenants implements Intervenants {
     private final Map<String, List<Intervenant>> intervenants = new HashMap<>();
 
     @Override
-    public void add(String eventId, Intervenant intervenant) {
+    public void ajouter(String eventId, Intervenant intervenant) {
         if (!intervenants.containsKey(eventId)) {
             intervenants.put(eventId, new ArrayList<>());
         }
@@ -20,7 +20,7 @@ public class InMemoryIntervenants implements Intervenants {
     }
 
     @Override
-    public List<Intervenant> get(String eventId) {
+    public List<Intervenant> recuperer(String eventId) {
         return intervenants.computeIfAbsent(eventId, k -> new ArrayList<>());
     }
 }
