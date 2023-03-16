@@ -15,7 +15,7 @@ public class SimulateurRentabilite {
         this.calculateur = calculateur;
     }
 
-    public Estimation simulerBilleterie(EvenementId evenementId, Montant rentabiliteAttendue, double commission) {
+    public Estimation simulerBilleterie(EvenementId evenementId, double rentabiliteAttendue, double commission) {
         Evenement evenement = evenements.recuperer(evenementId);
         Montant coutEvenement = evenement.coutOrganisation(commission);
 
