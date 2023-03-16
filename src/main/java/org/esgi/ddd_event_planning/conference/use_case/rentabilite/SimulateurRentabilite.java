@@ -8,18 +8,21 @@ import org.esgi.ddd_event_planning.conference.domain.model.evenement.Evenements;
 
 public class SimulateurRentabilite {
     private final Evenements evenements;
+    private final BilleterieCalculateur calculateur;
 
-    public SimulateurRentabilite(Evenements evenements) {
+    public SimulateurRentabilite(Evenements evenements, BilleterieCalculateur calculateur) {
         this.evenements = evenements;
+        this.calculateur = calculateur;
     }
 
     public Estimation simulerBilleterie(EvenementId evenementId, Montant rentabiliteAttendue, double commission) {
         Evenement evenement = evenements.recuperer(evenementId);
         Montant coutEvenement = evenement.coutOrganisation(commission);
-        Montant montantBillet = BilleterieCalculateur.calculerTarifBillet(evenement.participantCible(), coutEvenement, rentabiliteAttendue);
-        int nombreMinimumParticipants = BilleterieCalculateur.calculerNombreMinimumParticipants(coutEvenement, montantBillet);
-        Montant gainEstime = BilleterieCalculateur.calculerGainEstime(evenement.participantCible(), coutEvenement, montantBillet);
-        Montant gainMaximal = BilleterieCalculateur.calculerGainMaximal(evenement.participantMax(), coutEvenement, montantBillet);
+
+        Montant montantBillet = calculateur.calculerTarifBillet(evenement.participantCible(), coutEvenement, rentabiliteAttendue);
+        int nombreMinimumParticipants = calculateur.calculerNombreMinimumParticipants(coutEvenement, montantBillet);
+        Montant gainEstime = calculateur.calculerGainEstime(evenement.participantCible(), coutEvenement, montantBillet);
+        Montant gainMaximal = calculateur.calculerGainMaximal(evenement.participantMax(), coutEvenement, montantBillet);
 
         return Estimation.of(coutEvenement, montantBillet, nombreMinimumParticipants, gainEstime, gainMaximal);
     }
