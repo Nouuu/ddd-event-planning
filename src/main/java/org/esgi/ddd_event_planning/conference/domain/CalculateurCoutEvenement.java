@@ -1,8 +1,8 @@
-package org.esgi.ddd_event_planning.conference.domain.cout;
+package org.esgi.ddd_event_planning.conference.domain;
 
-import org.esgi.ddd_event_planning.conference.model.intervenant.Intervenant;
-import org.esgi.ddd_event_planning.conference.model.lieu.Lieu;
-import org.esgi.ddd_event_planning.conference.model.staff.Staff;
+import org.esgi.ddd_event_planning.conference.domain.model.intervenant.Intervenant;
+import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieu;
+import org.esgi.ddd_event_planning.conference.domain.model.staff.Staff;
 
 import java.util.List;
 

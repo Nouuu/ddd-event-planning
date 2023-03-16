@@ -1,8 +1,9 @@
 package org.esgi.ddd_event_planning.conference.domain.cout;
 
-import org.esgi.ddd_event_planning.conference.model.intervenant.Intervenant;
-import org.esgi.ddd_event_planning.conference.model.lieu.Lieu;
-import org.esgi.ddd_event_planning.conference.model.staff.Staff;
+import org.esgi.ddd_event_planning.conference.domain.CalculateurCoutEvenement;
+import org.esgi.ddd_event_planning.conference.domain.model.intervenant.Intervenant;
+import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieu;
+import org.esgi.ddd_event_planning.conference.domain.model.staff.Staff;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

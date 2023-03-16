@@ -1,12 +1,12 @@
 package org.esgi.ddd_event_planning.conference.use_case.billeterie;
 
-import org.esgi.ddd_event_planning.conference.domain.billeterie.Estimation;
-import org.esgi.ddd_event_planning.conference.domain.cout.CalculateurCoutEvenement;
-import org.esgi.ddd_event_planning.conference.model.evenement.Evenement;
-import org.esgi.ddd_event_planning.conference.model.evenement.Evenements;
-import org.esgi.ddd_event_planning.conference.model.intervenant.Intervenants;
-import org.esgi.ddd_event_planning.conference.model.lieu.Lieux;
-import org.esgi.ddd_event_planning.conference.model.staff.Staffs;
+import org.esgi.ddd_event_planning.conference.domain.Estimation;
+import org.esgi.ddd_event_planning.conference.domain.CalculateurCoutEvenement;
+import org.esgi.ddd_event_planning.conference.domain.model.evenement.Evenement;
+import org.esgi.ddd_event_planning.conference.domain.model.evenement.Evenements;
+import org.esgi.ddd_event_planning.conference.domain.model.intervenant.Intervenants;
+import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieux;
+import org.esgi.ddd_event_planning.conference.domain.model.staff.Staffs;
 
 public class SimulateurBilleterie {
     private final Evenements evenements;

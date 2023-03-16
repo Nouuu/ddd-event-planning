@@ -1,7 +1,7 @@
 package org.esgi.ddd_event_planning.conference.use_case.billeterie;
 
-import org.esgi.ddd_event_planning.conference.model.intervenant.Intervenant;
-import org.esgi.ddd_event_planning.conference.model.intervenant.Intervenants;
+import org.esgi.ddd_event_planning.conference.domain.model.intervenant.Intervenant;
+import org.esgi.ddd_event_planning.conference.domain.model.intervenant.Intervenants;
 
 import java.util.ArrayList;
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package org.esgi.ddd_event_planning.conference.use_case.billeterie;
 
-import org.esgi.ddd_event_planning.conference.model.staff.Staff;
-import org.esgi.ddd_event_planning.conference.model.staff.Staffs;
+import org.esgi.ddd_event_planning.conference.domain.model.staff.Staff;
+import org.esgi.ddd_event_planning.conference.domain.model.staff.Staffs;
 
 import java.util.ArrayList;
 import java.util.HashMap;

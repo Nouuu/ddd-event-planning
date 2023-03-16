@@ -1,4 +1,4 @@
-package org.esgi.ddd_event_planning.conference.domain.billeterie;
+package org.esgi.ddd_event_planning.conference.domain;
 
 public class Estimation {
     private double tarifBillet;

@@ -1,7 +1,7 @@
 package org.esgi.ddd_event_planning.conference.use_case.billeterie;
 
-import org.esgi.ddd_event_planning.conference.model.lieu.Lieu;
-import org.esgi.ddd_event_planning.conference.model.lieu.Lieux;
+import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieu;
+import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieux;
 
 import java.util.HashMap;
 import java.util.Map;
