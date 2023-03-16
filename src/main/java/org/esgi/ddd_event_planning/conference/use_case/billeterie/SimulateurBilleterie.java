@@ -1,39 +1,39 @@
 package org.esgi.ddd_event_planning.conference.use_case.billeterie;
 
-import org.esgi.ddd_event_planning.conference.domain.billeterie.CalculateurPrixBillet;
+import org.esgi.ddd_event_planning.conference.domain.billeterie.Estimation;
 import org.esgi.ddd_event_planning.conference.domain.cout.CalculateurCoutEvenement;
-import org.esgi.ddd_event_planning.conference.domain.gain.CalculateurGain;
-import org.esgi.ddd_event_planning.conference.domain.participant.CalculateurParticipantsMinimum;
-import org.esgi.ddd_event_planning.conference.model.billeterie.Estimation;
+import org.esgi.ddd_event_planning.conference.model.evenement.Evenement;
+import org.esgi.ddd_event_planning.conference.model.evenement.Evenements;
+import org.esgi.ddd_event_planning.conference.model.intervenant.Intervenants;
+import org.esgi.ddd_event_planning.conference.model.lieu.Lieux;
+import org.esgi.ddd_event_planning.conference.model.staff.Staffs;
 
 public class SimulateurBilleterie {
-    private final CalculateurCoutEvenement calculateurCoutEvenement;
-    private final CalculateurPrixBillet calculateurPrixBillet;
-    private final CalculateurParticipantsMinimum calculateurParticipantsMinimum;
-    private final CalculateurGain calculateurGain;
+    private final Evenements evenements;
+    private final Staffs staffs;
+    private final Lieux lieux;
+    private final Intervenants intervenants;
 
-    public SimulateurBilleterie(CalculateurCoutEvenement calculateurCoutEvenement, CalculateurPrixBillet calculateurPrixBillet, CalculateurParticipantsMinimum calculateurParticipantsMinimum, CalculateurGain calculateurGain) {
-        this.calculateurCoutEvenement = calculateurCoutEvenement;
-        this.calculateurPrixBillet = calculateurPrixBillet;
-        this.calculateurParticipantsMinimum = calculateurParticipantsMinimum;
-        this.calculateurGain = calculateurGain;
+    public SimulateurBilleterie(Evenements evenements, Staffs staffs, Lieux lieux, Intervenants intervenants) {
+        this.evenements = evenements;
+        this.staffs = staffs;
+        this.lieux = lieux;
+        this.intervenants = intervenants;
     }
 
 
-    public Estimation simulerBilleterie(String evenementId, double rentabiliteAttendue) {
+    public Estimation simulerBilleterie(String evenementId, double rentabiliteAttendue, double commission) {
+        Estimation estimation = new Estimation();
+        Evenement evenement = evenements.recuperer(evenementId);
 
-        double coutEvenement = calculateurCoutEvenement.calculerCoutEvenement(evenementId);
-        double tarifConseille = calculateurPrixBillet.calculerPrixBilletRentable(evenementId, coutEvenement, rentabiliteAttendue);
-        int participantsMinimum = calculateurParticipantsMinimum.calculerNombreMinimumParticipants(tarifConseille, coutEvenement);
-        double gainEstime = calculateurGain.calculerGainEstime(evenementId, coutEvenement, tarifConseille);
-        double gainMaximum = calculateurGain.calculerGainMaximum(evenementId, coutEvenement, tarifConseille);
+        double coutEvenement = new CalculateurCoutEvenement(commission)
+                .calculerCoutEvenement(staffs.recuperer(evenementId), intervenants.recuperer(evenementId), lieux.recuperer(evenementId));
 
+        estimation.calculerTarifBillet(evenement.participantCible(), coutEvenement, rentabiliteAttendue);
+        estimation.calculerNombreMinimumParticipants(coutEvenement, estimation.tarifBillet());
+        estimation.calculerGainEstime(evenement.participantCible(), coutEvenement, estimation.tarifBillet());
+        estimation.calculerGainMaximal(evenement.participantMax(), coutEvenement, estimation.tarifBillet());
 
-        return new Estimation(
-                tarifConseille,
-                gainEstime,
-                gainMaximum,
-                participantsMinimum
-        );
+        return estimation;
     }
 }
