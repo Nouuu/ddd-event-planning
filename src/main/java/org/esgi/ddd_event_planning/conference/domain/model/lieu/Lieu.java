@@ -1,6 +1,11 @@
 package org.esgi.ddd_event_planning.conference.domain.model.lieu;
 
-import org.esgi.ddd_event_planning.conference.domain.model.Tarif;
+import org.esgi.ddd_event_planning.conference.domain.model.Montant;
 
-public record Lieu(Tarif tarif, double surfaceEnM2) {
+public record Lieu(Montant montant, double surfaceEnM2) {
+    public Lieu {
+        if (surfaceEnM2 < 0) {
+            throw new IllegalArgumentException("Surface cannot be negative");
+        }
+    }
 }

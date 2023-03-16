@@ -1,4 +1,4 @@
-package org.esgi.ddd_event_planning.conference.use_case.billeterie;
+package org.esgi.ddd_event_planning.conference.use_case.rentabilite;
 
 import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieu;
 import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieux;
