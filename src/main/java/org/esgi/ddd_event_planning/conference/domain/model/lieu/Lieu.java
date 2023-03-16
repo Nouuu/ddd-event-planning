@@ -1,4 +1,6 @@
 package org.esgi.ddd_event_planning.conference.domain.model.lieu;
 
-public record Lieu(double cout) {
+import org.esgi.ddd_event_planning.conference.domain.model.Tarif;
+
+public record Lieu(Tarif tarif, double surfaceEnM2) {
 }

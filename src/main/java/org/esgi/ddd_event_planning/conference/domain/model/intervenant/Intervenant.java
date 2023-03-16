@@ -1,4 +1,6 @@
 package org.esgi.ddd_event_planning.conference.domain.model.intervenant;
 
-public record Intervenant(double cout) {
+import org.esgi.ddd_event_planning.conference.domain.model.Tarif;
+
+public record Intervenant(Tarif tarif) {
 }

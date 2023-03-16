@@ -15,16 +15,16 @@ public class CalculateurCoutEvenement {
 
     public double calculerCoutEvenement(List<Staff> staffs, List<Intervenant> intervenants, Lieu lieu) {
         return (coutStaffs(staffs) +
-                lieu.cout() +
+                lieu.tarif() +
                 coutIntervenants(intervenants)
         ) * (1 + commission);
     }
 
     private double coutStaffs(List<Staff> staffs) {
-        return staffs.stream().mapToDouble(Staff::cost).sum();
+        return staffs.stream().mapToDouble(Staff::tarif).sum();
     }
 
     private double coutIntervenants(List<Intervenant> intervenants) {
-        return intervenants.stream().mapToDouble(Intervenant::cout).sum();
+        return intervenants.stream().mapToDouble(Intervenant::tarif).sum();
     }
 }
