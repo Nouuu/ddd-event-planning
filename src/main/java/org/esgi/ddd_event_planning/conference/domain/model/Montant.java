@@ -1,4 +1,4 @@
-package org.esgi.ddd_event_planning.shared_kernel.domain.model;
+package org.esgi.ddd_event_planning.conference.domain.model;
 
 public record Montant(double montant, String devise) {
     public Montant {

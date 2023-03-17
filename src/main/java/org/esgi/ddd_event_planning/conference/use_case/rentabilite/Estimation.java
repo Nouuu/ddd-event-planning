@@ -1,7 +1,7 @@
 package org.esgi.ddd_event_planning.conference.use_case.rentabilite;
 
 
-import org.esgi.ddd_event_planning.shared_kernel.domain.model.Montant;
+import org.esgi.ddd_event_planning.conference.domain.model.Montant;
 
 public record Estimation(double coutEvenement, double tarifBillet, int nombreMinimumParticipants,
                         double gainEstime, double gainMaximal, String currency) {

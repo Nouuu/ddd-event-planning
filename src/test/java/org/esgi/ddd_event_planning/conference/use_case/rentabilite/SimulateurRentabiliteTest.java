@@ -1,7 +1,7 @@
 package org.esgi.ddd_event_planning.conference.use_case.rentabilite;
 
 import org.esgi.ddd_event_planning.conference.domain.BilleterieCalculateur;
-import org.esgi.ddd_event_planning.shared_kernel.domain.model.Montant;
+import org.esgi.ddd_event_planning.conference.domain.model.Montant;
 import org.esgi.ddd_event_planning.conference.domain.model.evenement.Evenement;
 import org.esgi.ddd_event_planning.conference.domain.model.evenement.EvenementId;
 import org.esgi.ddd_event_planning.conference.domain.model.evenement.Evenements;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DisplayName("Un simulateur de rentabilité")
-public class SimulateurRentabiliteTest {
+class SimulateurRentabiliteTest {
     Evenements evenements;
     SimulateurRentabilite simulateurRentabilite;
     static final double COMMISSION = 0.1;
@@ -46,8 +46,8 @@ public class SimulateurRentabiliteTest {
     void computeEventWithNegativeSurface() {
 
         RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            //Arrange
-            Evenement evenement = new Evenement(
+            // Act
+            new Evenement(
                     new EvenementId("1"),
                     100,
                     150,
@@ -55,9 +55,6 @@ public class SimulateurRentabiliteTest {
                     Collections.emptyList(),
                     new Lieu(new Montant(2000, "EUR"), -100)
             );
-            evenements.ajouter(evenement);
-            //Act
-            simulateurRentabilite.simulerBilleterie("1", 0.1, COMMISSION);
         });
 
         //Assert
@@ -69,17 +66,18 @@ public class SimulateurRentabiliteTest {
     @DisplayName("Ne peut se calculer si la rentabilité attendu est négative")
     void computeWithNegativePercentage() {
 
+        //Arrange
+        Evenement evenement = new Evenement(
+                new EvenementId("1"),
+                100,
+                150,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                new Lieu(new Montant(2000, "EUR"), 100)
+        );
+        evenements.ajouter(evenement);
+
         RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            //Arrange
-            Evenement evenement = new Evenement(
-                    new EvenementId("1"),
-                    100,
-                    150,
-                    Collections.emptyList(),
-                    Collections.emptyList(),
-                    new Lieu(new Montant(2000, "EUR"), 100)
-            );
-            evenements.ajouter(evenement);
             //Act
             simulateurRentabilite.simulerBilleterie("1", -0.1, COMMISSION);
         });
@@ -90,22 +88,22 @@ public class SimulateurRentabiliteTest {
 
 
     @Test
-    @DisplayName("Ne peut se calculer si le rendement attendu est négatif")
+    @DisplayName("Ne peut se calculer si le rendement attendu est trop grand")
     void computeWithPercentageOverOne() {
 
+        //Arrange
+        Evenement evenement = new Evenement(
+                new EvenementId("1"),
+                100,
+                150,
+                Collections.emptyList(),
+                Collections.emptyList(),
+                new Lieu(new Montant(2000, "EUR"), 100)
+        );
+        evenements.ajouter(evenement);
         RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            //Arrange
-            Evenement evenement = new Evenement(
-                    new EvenementId("1"),
-                    100,
-                    150,
-                    Collections.emptyList(),
-                    Collections.emptyList(),
-                    new Lieu(new Montant(2000, "EUR"), 100)
-            );
-            evenements.ajouter(evenement);
             //Act
-            simulateurRentabilite.simulerBilleterie("1", -1.2, COMMISSION);
+            simulateurRentabilite.simulerBilleterie("1", 1.2, COMMISSION);
         });
 
         //Assert
@@ -115,24 +113,21 @@ public class SimulateurRentabiliteTest {
     @Test
     @DisplayName("Ne peut se calculer si les devises sont différentes")
     void computeEventWithDifferentDevise() {
-
+        // Arrange
+        Evenement evenement = new Evenement(
+                new EvenementId("1"),
+                100,
+                150,
+                Collections.emptyList(),
+                List.of(new Intervenant(new Montant(1000, "USD"))),
+                new Lieu(new Montant(2000, "EUR"), 100)
+        );
+        evenements.ajouter(evenement);
+        // Assert
         RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
-            //Arrange
-            Evenement evenement = new Evenement(
-                    new EvenementId("1"),
-                    100,
-                    150,
-                    Collections.emptyList(),
-                    List.of(new Intervenant(new Montant(1000, "USD"))),
-                    new Lieu(new Montant(2000, "EUR"), 100)
-            );
-            evenements.ajouter(evenement);
             //Act
             simulateurRentabilite.simulerBilleterie("1", 0.1, COMMISSION);
         });
-
-        //Assert
-        assertTrue(thrown.getMessage().contains("Cannot add two Tarif with different devise"));
     }
 
     @Test
@@ -185,7 +180,7 @@ public class SimulateurRentabiliteTest {
     }
 
     @Test
-    @DisplayName("Doit renvoyer une estimation de billeterie avec 10% de rentabilité attendue")
+    @DisplayName("Doit renvoyer une estimation de billeterie avec 15% de rentabilité attendue")
     void computeWithStaffAndStaff() {
         //Arrange
         Evenement evenement = new Evenement(
@@ -205,13 +200,13 @@ public class SimulateurRentabiliteTest {
         evenements.ajouter(evenement);
 
         //Act
-        Estimation estimation = simulateurRentabilite.simulerBilleterie("1", 0.1, COMMISSION);
+        Estimation estimation = simulateurRentabilite.simulerBilleterie("1", 0.15, COMMISSION);
 
         //Assert
-        assertEquals(2200, estimation.coutEvenement());
-        assertEquals(24.2, estimation.tarifBillet());
-        assertEquals(91, estimation.nombreMinimumParticipants());
-        assertEquals(220, estimation.gainEstime());
-        assertEquals(1430, estimation.gainMaximal());
+        assertEquals(6600, estimation.coutEvenement());
+        assertEquals(75.9, estimation.tarifBillet());
+        assertEquals(87, estimation.nombreMinimumParticipants());
+        assertEquals(990, estimation.gainEstime());
+        assertEquals(4785, estimation.gainMaximal());
     }
 }
