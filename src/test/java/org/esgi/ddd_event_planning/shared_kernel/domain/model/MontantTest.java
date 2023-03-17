@@ -1,12 +1,15 @@
 package org.esgi.ddd_event_planning.shared_kernel.domain.model;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Montant")
 class MontantTest {
     @Test
+    @DisplayName("Cannot be negative")
     void createMontantWithNegativeValue() {
         // Arrange
         // ACT
@@ -18,6 +21,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Should be 20 when adding 10 with 10")
     void addTwoMontant() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -30,6 +34,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Cannot add two montant with different devise")
     void addTwoMontantWithDifferentDevise() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -44,6 +49,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Should be 0 when substracting 10 with 10")
     void subtract() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -56,6 +62,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Cannot substract two montant with different devise")
     void subtractWithDifferentDevise() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -68,6 +75,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Cannot be negative after substracting")
     void subtractWithBiggerValue() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -80,6 +88,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Should be 12 when multiplying 10 with 1.2")
     void multiply() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -91,6 +100,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Should be 5 when dividing 10 by 2")
     void divide() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -102,6 +112,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Cannot be divided by zero")
     void divideByZero() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -113,6 +124,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Should be 5 when dividing 10 by 2 with another Montant")
     void divideByAnotherMontant() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -125,6 +137,7 @@ class MontantTest {
     }
 
     @Test
+    @DisplayName("Cannot be divided by another Montant of zero")
     void divideByAnotherMontantOfZero() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
@@ -136,6 +149,7 @@ class MontantTest {
         });
     }
     @Test
+    @DisplayName("Cannot be divided by another Montant with different devise")
     void divideByAnotherMontantInDifferentDevise() {
         // Arrange
         var montant1 = new Montant(10, "EUR");
