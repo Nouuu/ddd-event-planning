@@ -16,9 +16,10 @@ public class SimulateurRentabilite {
         this.calculateur = calculateur;
     }
 
-    public Estimation simulerBilleterie(EvenementId evenementId, double rentabiliteAttendue, double commission) {
-        Evenement evenement = evenements.recuperer(evenementId);
-        Montant coutEvenement = evenement.coutOrganisation(commission);
+    public Estimation simulerBilleterie(String evenementId, double rentabiliteAttendue, double commission) {
+
+        Evenement evenement = evenements.recuperer(new EvenementId(evenementId));
+        Montant coutEvenement = evenement.coutOrganisation(new Pourcentage(commission));
 
         Montant montantBillet = calculateur.calculerTarifBillet(evenement.participantCible(), coutEvenement, new Pourcentage(rentabiliteAttendue));
         int nombreMinimumParticipants = calculateur.calculerNombreMinimumParticipants(coutEvenement, montantBillet);

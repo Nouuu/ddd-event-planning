@@ -1,6 +1,6 @@
 package org.esgi.ddd_event_planning.conference.domain.model.staff;
 
-public enum StaffFunction {
+public enum StaffRole {
     ORGANISATEUR,
     ANIMATEUR,
     TECHNICIEN,

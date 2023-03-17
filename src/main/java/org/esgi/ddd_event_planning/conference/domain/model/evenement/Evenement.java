@@ -1,6 +1,7 @@
 package org.esgi.ddd_event_planning.conference.domain.model.evenement;
 
 import org.esgi.ddd_event_planning.conference.domain.model.Montant;
+import org.esgi.ddd_event_planning.conference.domain.model.Pourcentage;
 import org.esgi.ddd_event_planning.conference.domain.model.intervenant.Intervenant;
 import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieu;
 import org.esgi.ddd_event_planning.conference.domain.model.staff.Staff;
@@ -25,7 +26,7 @@ public class Evenement {
         this.lieu = lieu;
     }
 
-    public Montant coutOrganisation(double commission) {
+    public Montant coutOrganisation(Pourcentage commission) {
         var intervenantTarif = intervenants.stream()
                 .map(Intervenant::montant)
                 .reduce(Montant::add)
@@ -35,7 +36,7 @@ public class Evenement {
                 .reduce(Montant::add)
                 .orElse(new Montant(0, "EUR"));
         var coutLieu = lieu.montant();
-        return intervenantTarif.add(staffTarif).add(coutLieu).multiply(1 + commission);
+        return intervenantTarif.add(staffTarif).add(coutLieu).multiply(1 + commission.valeur());
     }
 
     public EvenementId evenementId() {
@@ -48,17 +49,5 @@ public class Evenement {
 
     public int participantMax() {
         return participantMax;
-    }
-
-    public List<Staff> staffs() {
-        return staffs;
-    }
-
-    public List<Intervenant> intervenants() {
-        return intervenants;
-    }
-
-    public Lieu lieu() {
-        return lieu;
     }
 }
