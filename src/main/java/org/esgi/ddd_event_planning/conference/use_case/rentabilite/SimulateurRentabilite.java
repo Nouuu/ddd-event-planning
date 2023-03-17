@@ -1,7 +1,7 @@
 package org.esgi.ddd_event_planning.conference.use_case.rentabilite;
 
 import org.esgi.ddd_event_planning.conference.domain.BilleterieCalculateur;
-import org.esgi.ddd_event_planning.conference.domain.model.Montant;
+import org.esgi.ddd_event_planning.shared_kernel.domain.model.Montant;
 import org.esgi.ddd_event_planning.conference.domain.model.Pourcentage;
 import org.esgi.ddd_event_planning.conference.domain.model.evenement.Evenement;
 import org.esgi.ddd_event_planning.conference.domain.model.evenement.EvenementId;
