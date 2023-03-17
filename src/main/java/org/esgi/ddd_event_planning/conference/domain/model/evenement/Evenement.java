@@ -50,4 +50,14 @@ public class Evenement {
     public int participantMax() {
         return participantMax;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Evenement evenement = (Evenement) o;
+
+        return evenementId.equals(evenement.evenementId);
+    }
 }
