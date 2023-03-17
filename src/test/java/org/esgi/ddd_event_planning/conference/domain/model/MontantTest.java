@@ -1,6 +1,5 @@
 package org.esgi.ddd_event_planning.conference.domain.model;
 
-import org.esgi.ddd_event_planning.conference.domain.model.Montant;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
