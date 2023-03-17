@@ -1,6 +1,6 @@
 package org.esgi.ddd_event_planning.conference.domain.model.evenement;
 
-import org.esgi.ddd_event_planning.shared_kernel.domain.model.Montant;
+import org.esgi.ddd_event_planning.conference.domain.model.Montant;
 import org.esgi.ddd_event_planning.conference.domain.model.Pourcentage;
 import org.esgi.ddd_event_planning.conference.domain.model.intervenant.Intervenant;
 import org.esgi.ddd_event_planning.conference.domain.model.lieu.Lieu;
