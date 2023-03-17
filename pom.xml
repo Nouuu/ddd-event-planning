@@ -32,25 +32,12 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <version>3.3.0</version>
-        <configuration>
-          <archive>
-            <manifest>
-              <mainClass>org.esgi.ddd_event_planning.conference.App</mainClass>
-            </manifest>
-          </archive>
-        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
         <version>3.4.2</version>
         <configuration>
-          <archive>
-            <manifest>
-              <!-- Spécifier le point d'entrée -->
-              <mainClass>org.esgi.ddd_event_planning.conference.App</mainClass>
-            </manifest>
-          </archive>
           <finalName>${project.artifactId}-${project.version}-standalone</finalName>
           <descriptorRefs>
             <descriptorRef>jar-with-dependencies</descriptorRef>
