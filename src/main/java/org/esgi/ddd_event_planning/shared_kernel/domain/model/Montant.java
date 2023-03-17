@@ -5,7 +5,7 @@ public record Montant(double montant, String devise) {
         if (montant < 0) {
             throw new IllegalArgumentException("Montant cannot be negative");
         }
-        montant = Math.ceil(montant * 100.0) / 100.0;
+        montant = Math.floor(montant * 100.0) / 100.0;
     }
 
     public Montant add(Montant other) {
