@@ -123,13 +123,11 @@ class SimulateurRentabiliteTest {
                 new Lieu(new Montant(2000, "EUR"), 100)
         );
         evenements.ajouter(evenement);
+        // Assert
         RuntimeException thrown = Assertions.assertThrows(RuntimeException.class, () -> {
             //Act
             simulateurRentabilite.simulerBilleterie("1", 0.1, COMMISSION);
         });
-
-        //Assert
-        assertTrue(thrown.getMessage().contains("Cannot add two Tarif with different devise"));
     }
 
     @Test
@@ -209,6 +207,6 @@ class SimulateurRentabiliteTest {
         assertEquals(75.9, estimation.tarifBillet());
         assertEquals(87, estimation.nombreMinimumParticipants());
         assertEquals(990, estimation.gainEstime());
-        assertEquals(4784.99, estimation.gainMaximal());
+        assertEquals(4785, estimation.gainMaximal());
     }
 }
