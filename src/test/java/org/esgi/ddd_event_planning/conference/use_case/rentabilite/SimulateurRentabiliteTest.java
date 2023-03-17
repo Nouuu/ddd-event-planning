@@ -182,7 +182,7 @@ class SimulateurRentabiliteTest {
     }
 
     @Test
-    @DisplayName("Doit renvoyer une estimation de billeterie avec 10% de rentabilité attendue")
+    @DisplayName("Doit renvoyer une estimation de billeterie avec 15% de rentabilité attendue")
     void computeWithStaffAndStaff() {
         //Arrange
         Evenement evenement = new Evenement(
@@ -202,13 +202,13 @@ class SimulateurRentabiliteTest {
         evenements.ajouter(evenement);
 
         //Act
-        Estimation estimation = simulateurRentabilite.simulerBilleterie("1", 0.1, COMMISSION);
+        Estimation estimation = simulateurRentabilite.simulerBilleterie("1", 0.15, COMMISSION);
 
         //Assert
         assertEquals(6600, estimation.coutEvenement());
-        assertEquals(72.7, estimation.tarifBillet());
-        assertEquals(91, estimation.nombreMinimumParticipants());
-        assertEquals(660, estimation.gainEstime());
-        assertEquals(1430, estimation.gainMaximal());
+        assertEquals(75.9, estimation.tarifBillet());
+        assertEquals(87, estimation.nombreMinimumParticipants());
+        assertEquals(990, estimation.gainEstime());
+        assertEquals(4784.99, estimation.gainMaximal());
     }
 }
